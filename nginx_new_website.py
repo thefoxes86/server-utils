@@ -3,7 +3,7 @@ import shutil
 import errno
 
 path_www = '/var/www/'
-sites_enable = '/etc/nginx/sites-enables/'
+sites_enable = '/etc/nginx/sites-enabled/'
 
 name_web = input('Digit the name of the directory of the website: ')
 new_dir_web = path_www + name_web
