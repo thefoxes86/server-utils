@@ -1,10 +1,22 @@
 import os
 import shutil
+import errno
 
-dir_web = input('Digit the name of the directory of the website: ')
-dir_web = '/Users/thefoxes86/Desktop/' + dir_web
+path_www = '/var/www/'
+sites_enable = '/etc/nginx/sites-enables/'
 
-os.mkdir(dir_web)
+name_web = input('Digit the name of the directory of the website: ')
+new_dir_web = path_www + name_web
 
-default_nginx = '/etc/nginx/sites-enables/default'
+try:
+    os.mkdir(new_dir_web)
+except OSError as exc:
+    if exc.errno != errno.EEXIST:
+        raise
+    pass
+
+
+default_nginx = sites_enable + 'default'
+
+shutil.copyfile(default_nginx, sites_enable + name_web)
 
